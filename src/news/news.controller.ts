@@ -29,37 +29,37 @@ export class NewsController {
     //     return news;
     // }
 
-    // @Get()
-    // async findOne(@Query('id') id: string): Promise<News> {
-    //     const news = await this.newService.findOne(+id);
-    //     if (!news) {
-    //         throw new HttpException(
-    //             'Noticia no encontrada',
-    //             HttpStatus.NOT_FOUND
-    //         );
-    //     }    
-    //     return news;
-    // }
-
     @Get()
-async findOne(@Query('id') id: string): Promise<News> {
-    try {
-        const news = await this.newService.findOne(id);
+    async findOne(@Query('id') id: string): Promise<News> {
+        const news = await this.newService.findOne(+id);
         if (!news) {
             throw new HttpException(
                 'Noticia no encontrada',
                 HttpStatus.NOT_FOUND
             );
-        }
+        }    
         return news;
-    } catch (error) {
-        console.error('Error:', error);
-        throw new HttpException(
-            'Error al procesar la consulta',
-            HttpStatus.INTERNAL_SERVER_ERROR
-        );
     }
-}
+
+    @Get()
+// async findOne(@Query('id') id: string): Promise<News> {
+//     try {
+//         const news = await this.newService.findOne(id);
+//         if (!news) {
+//             throw new HttpException(
+//                 'Noticia no encontrada',
+//                 HttpStatus.NOT_FOUND
+//             );
+//         }
+//         return news;
+//     } catch (error) {
+//         console.error('Error:', error);
+//         throw new HttpException(
+//             'Error al procesar la consulta',
+//             HttpStatus.INTERNAL_SERVER_ERROR
+//         );
+//     }
+// }
 
     @Post()
     async create(@Body() createNewsDto: CreateNewDTO): Promise<News> {
