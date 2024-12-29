@@ -1,19 +1,10 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator"
+import { Type } from "class-transformer";
+import { IsInt, IsNotEmpty, IsNumber, IsString, Min } from "class-validator"
 
 export class CreateNewDTO{
-    // @IsNumber()
-    // @IsNotEmpty()
-    // id:number
-
-    // @IsString()
-    // title:string
-
-    // @IsString()
-    // body:string
-    
-    // @IsString()
-    // datetime:string
-    title: string;
-    body: string;
-    datetime: string;
+    @Type(() => Number)
+    @IsInt()
+    @Min(1)
+    @IsNotEmpty()
+    id: number;
 }

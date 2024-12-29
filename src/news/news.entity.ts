@@ -11,13 +11,13 @@ export class News {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ length: 255 })
+    @Column({ type: 'varchar', length: 255 })
     title: string;
 
     @Column({ type: 'text' })
     body: string;
 
-    @Column({ type: 'text' })
-    datetime: Date;
+    @Column({ type: 'varchar' })
+    datetime: string;
 
 }

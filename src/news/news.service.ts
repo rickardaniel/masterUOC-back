@@ -22,9 +22,20 @@ export class NewsService {
     } 
 
     // BUSCAR POR ID
-    async findOne(id: number): Promise<News> {
-        return await this.newsRepository.findOne({ 
-            where: { id } 
+    // async findOne(id: number): Promise<News> {
+    //     return await this.newsRepository.findOne({ 
+    //         where: { id } 
+    //     });
+    // }
+    async findOne(id: number): Promise<News | undefined> {
+        // Validación estricta de tipo
+        if (!Number.isInteger(id) || id < 1) {
+            return undefined;
+        }
+
+        // Usar findOneBy que es más seguro contra inyecciones SQL
+        return await this.newsRepository.findOneBy({
+            id: id
         });
     }
 
